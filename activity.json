@@ -1,0 +1,41 @@
+{
+    "name": "flogogetcontent",
+    "type": "flogo:activity",
+    "ref": "github.com/abasse/flogogetcontent",
+    "version": "0.0.1",
+    "title": "Get content from URL",
+    "description": "Get content from URL",
+    "homepage": "https://github.com/abasse/flogogetcontent",
+      "inputs":[
+        {
+          "name": "basicAuthUser",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "basicAuthPassword",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "URL",
+          "type": "string",
+          "required": true
+        }
+      ],
+      "outputs": [
+        {
+            "name": "result",
+            "type": "any"
+        },
+        {
+            "name": "status",
+            "type": "string"
+        },
+        {
+            "name": "header",
+            "type": "string"
+        }
+      ]
+  }
+  
