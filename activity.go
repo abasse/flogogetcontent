@@ -52,6 +52,8 @@ func (a *GetcontentActivity) Eval(context activity.Context) (done bool, err erro
 	// Read Response Body
 	respBody, _ := ioutil.ReadAll(resp.Body)
 
+	defer req.Body.Close()
+
 	// Add Results
 	context.SetOutput("result", string(respBody))
 	context.SetOutput("status", resp.Status)
