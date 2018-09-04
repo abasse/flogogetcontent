@@ -12,6 +12,9 @@ import (
 // activityLog is the default logger for the exec Activity
 var log = logger.GetLogger("activity-tibco-flogogetcontent")
 
+// Create client
+var client = &http.Client{}
+
 type GetcontentActivity struct {
 	metadata *activity.Metadata
 }
@@ -32,9 +35,6 @@ func (a *GetcontentActivity) Eval(context activity.Context) (done bool, err erro
 	basicAuthPassword, _ := context.GetInput("basicAuthPassword").(string)
 	url, _ := context.GetInput("URL").(string)
 
-	// Create client
-	client := &http.Client{}
-
 	// Create request
 	req, err := http.NewRequest("GET", url, nil)
 
@@ -52,7 +52,7 @@ func (a *GetcontentActivity) Eval(context activity.Context) (done bool, err erro
 	// Read Response Body
 	respBody, _ := ioutil.ReadAll(resp.Body)
 
-	defer req.Body.Close()
+	defer resp.Body.Close()
 
 	// Add Results
 	context.SetOutput("result", string(respBody))
